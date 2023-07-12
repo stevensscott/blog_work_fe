@@ -1,24 +1,31 @@
- import axios from "axios";
- import { useState, useEffect } from "react";
- import { ArticlesIndex } from "./ArticlesIndex";
-
-  export function Content() {
-
-
-const [articles, setArticles] = useState([]);
-const handleIndexArticles = () => {
-console.log("handleIndexArticles");
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { ArticlesIndex } from "./ArticlesIndex";
+import { ArticlesNew } from "./ArticlesNew";
+export function Content() {
+  const [articles, setArticles] = useState([]);
+  const handleIndexArticles = () => {
+    console.log("handleIndexArticles");
     axios.get("http://localhost:3000/articles.json").then((response) => {
       console.log(response.data);
       setArticles(response.data);
     });
- };
+  };
 
- useEffect(handleIndexArticles, []);
+  const handleCreateArticle = (params, successCallback) => {
+    console.log("handleCreateArticle", params);
+    axios.post("http://localhost:3000/articles.json", params).then((response) => {
+      setArticles([...articles, response.data]);
+      successCallback();
+    });
+  };
 
-return (
-<div>
-<ArticlesIndex articles={articles} />
-</div>
-);
+  useEffect(handleIndexArticles, []);
+
+  return (
+    <div>
+      <ArticlesNew onCreateArticle={handleCreateArticle} />
+      <ArticlesIndex articles={articles} />
+    </div>
+  );
 }
