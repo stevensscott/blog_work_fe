@@ -12,11 +12,11 @@ export function Content() {
     });
   };
 
-  const handleCreateArticle = (params, successCallback) => {
+  const handleCreateArticle = (params) => {
     console.log("handleCreateArticle", params);
-    axios.post("http://localhost:3000/articles.json", params).then((response) => {
+    axios.post("http://localhost:3000/articles.json", { article: params }).then((response) => {
       setArticles([...articles, response.data]);
-      successCallback();
+      // successCallback();
     });
   };
 

@@ -1,11 +1,12 @@
 export function ArticlesNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    const params = new FormData(event.target);
-    console.log("params here");
-    console.log(params);
+    const data = new FormData(event.target);
+    const params = { title: data.get("title"), body: data.get("body"), status: data.get("status") };
 
-    props.onCreateArticle(params, () => event.target.reset());
+    // props.onCreateArticle(params, () => event.target.reset());
+    props.onCreateArticle(params);
+    event.target.reset();
   };
   return (
     <div>
@@ -21,7 +22,7 @@ export function ArticlesNew(props) {
           Status: <input name="status" type="text" />
         </div>
 
-        <button type="submit">Create Article</button>
+        <button type="submit">Create test Article</button>
       </form>
     </div>
   );
