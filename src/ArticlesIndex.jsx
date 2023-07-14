@@ -7,6 +7,8 @@
          <div key={article.id}>
            <h2>{article.title}</h2>
            <p>{article.body}</p>
+           <p>{article.status}</p>
+           <button onClick={() => props.onShowArticle(article)}>More info</button>
          </div>
         ))}
         </div>
