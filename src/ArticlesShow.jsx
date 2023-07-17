@@ -3,8 +3,11 @@ export function ArticlesShow(props) {
   const handleSubmit = (event) => {
         event.preventDefault();
         const params = new FormData(event.target);
-        // props.onUpdateArticle(props.article.id, params, () => event.target.reset());
-        props.onUpdateArticle(props.article.id, { title: params.get("title"), body: params.get("body"), status: params.get("status") }, () => event.target.reset());
+        console.log(props.article.id)
+        console.log(props.article.title)
+          props.onUpdateArticle(props.article.id, { title: params.get("title"), body: params.get("body"), status: params.get("status") }, () => event.target.reset());
+       // props.onUpdateArticle(props.article.id, { title: props.article.title, body: params.get("body"), status: params.get("status") }, () => event.target.reset());
+       console.log(props.article.title)
       };
 
       const handleClick = () => {
