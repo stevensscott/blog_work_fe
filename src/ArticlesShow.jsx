@@ -30,7 +30,12 @@ export function ArticlesShow(props) {
         <div>
           Status: <input defaultValue={props.article.status} name="status" type="text" />
         </div>
-
+        {props.article.comments.map((comment) => (
+          <div key={comment.id}>
+            <p>Commenter: {comment.commenter}</p>
+            <p>Body: {comment.body}</p>
+          </div>
+        ))}
         <button type="submit">Update Article</button>
       </form>
       <button onClick={handleClick}>Delete Article</button>
