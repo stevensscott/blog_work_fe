@@ -8,9 +8,14 @@ export function ArticlesIndex(props) {
           <p>Article Body: {article.body}</p>
           <p>Article Status: {article.status}</p>
           <h2>Here are the article comments. Comments are associated with Article in a belongs_to association.</h2>
-          {/* <p>Commenter: {article.comments[0]['commenter']}</p>
-           <p>Body: {article.comments[0]['body']}</p>
-           {console.log(article.comments[0]['body'])}                       */}
+
+          {article.comments.map((comment) => (
+            <div key={comment.id}>
+              <p>Commenter: {comment.commenter}</p>
+              <p>Body: {comment.body}</p>
+            </div>
+          ))}
+
           <button onClick={() => props.onShowArticle(article)}>More info</button>
         </div>
       ))}

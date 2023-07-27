@@ -1,4 +1,5 @@
 import axios from "axios";
+// useState
 import { useState, useEffect } from "react";
 import { ArticlesIndex } from "./ArticlesIndex";
 import { ArticlesNew } from "./ArticlesNew";
@@ -6,6 +7,8 @@ import { Modal } from "./Modal";
 import { ArticlesShow } from "./ArticlesShow";
 
 export function Content() {
+  // setArticles updates articles
+  //useState provided default value initially and then is used to update current state
   const [articles, setArticles] = useState([]);
   const [isArticlesShowVisible, setIsArticlesShowVisible] = useState(false);
   const [currentArticle, setCurrentArticle] = useState({});
@@ -21,8 +24,9 @@ export function Content() {
   const handleCreateArticle = (params) => {
     console.log("handleCreateArticle", params);
     axios.post("http://localhost:3000/articles.json", { article: params }).then((response) => {
+      // Adds new article to the end of the articles array
+      console.log(response.data);
       setArticles([...articles, response.data]);
-      // successCallback();
     });
   };
 
